@@ -6,7 +6,7 @@
 downstream models. Parallelise by calling registerDoMC(n_cores)
 before the cross_train_predict call.}
 \usage{
-cross_train_predict(data, fold_id, train_model, predict_model)
+cross_train_predict(data, fold_id, train_model, predict_model = predict)
 }
 \arguments{
 \item{data}{any training data format that can be indexed by [i, ]}
@@ -15,7 +15,8 @@ cross_train_predict(data, fold_id, train_model, predict_model)
 
 \item{train_model}{a function with signature data => model}
 
-\item{predict_model}{a function with signature (model, data) => predictions}
+\item{predict_model}{a function with signature
+(model, data) => predictions. Defaults to predict.}
 }
 \value{
 out of fold model predictions

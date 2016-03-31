@@ -12,7 +12,8 @@ predict_folds(data, fold_id, models, predict_model)
 
 \item{fold_id}{integer sequence denoting folds starting at 1}
 
-\item{predict_model}{a function with signature (model, data) => predictions}
+\item{predict_model}{a function with signature
+(model, data) => predictions. Defaults to predict.}
 }
 \value{
 matrix of predictions

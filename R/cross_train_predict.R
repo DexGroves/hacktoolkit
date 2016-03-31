@@ -9,7 +9,9 @@
 #' @param data any training data format that can be indexed by [i, ]
 #' @param fold_id integer sequence denoting folds starting at 1
 #' @param train_model a function with signature data => model
-#' @param predict_model a function with signature (model, data) => predictions
+#' @param predict_model a function with signature
+#' (model, data) => predictions. Defaults to predict.
+#'
 #' @return out of fold model predictions
 #'
 #' @examples
@@ -46,7 +48,8 @@
 #'
 #' fold_id <- sample(1:10, nrow(train), TRUE)
 #' ct_preds <- cross_train_predict(train, fold_id, train_model, predict_model)
-cross_train_predict <- function(data, fold_id, train_model, predict_model) {
+cross_train_predict <- function(data, fold_id,
+                                train_model, predict_model = predict) {
   models <- train_folds(data, fold_id, train_model)
   prediction_matrix <- predict_folds(data, fold_id, models, predict_model)
 
@@ -73,6 +76,6 @@ train_folds <- function(data, fold_id, train_model) {
 #' @return matrix of predictions
 predict_folds <- function(data, fold_id, models, predict_model) {
   foreach (heldout_fold = seq(max(fold_id)), .combine = cbind) %dopar% {
-    predict_model(models[[fold_id]], data)
+    predict_model(models[[heldout_fold]], data)
   }
 }

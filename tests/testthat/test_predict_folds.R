@@ -2,6 +2,8 @@ context("predict_folds")
 
 
 library("ggplot2")
+library("doMC")
+library("foreach")
 
 registerDoMC(1)
 

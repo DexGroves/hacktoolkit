@@ -14,6 +14,7 @@
 #' (model, data) => predictions. Defaults to predict.
 #' @param range of values to test. Defaults to 10 evenly spaced
 #' points between the min and max of the target variable.
+#' @param sample_frac fraction of data to sample randomly
 #'
 #' @return data.table of the variable and its derived marginal effect
 #'
@@ -48,7 +49,7 @@
 #'
 #' marginal_effect(train, "x", model, predict_model)
 marginal_effect <- function(data, var, model, predict_model = predict,
-                            range = -1) {
+                            range = -1, sample_frac = 1.0) {
   if (!is.data.table(data)) {
     stop("Incompatible with non data.tables!", call. = FALSE)
   }
@@ -57,7 +58,8 @@ marginal_effect <- function(data, var, model, predict_model = predict,
     range <- seq(min(data[[var]]), max(data[[var]]), length.out = 10)
   }
 
-  working_data <- copy(data)
+  sample_rows <- sample(seq(nrow(data)), ceiling(sample_frac * nrow(data)))
+  working_data <- data[sample_rows]
 
   # Handling this with a for vs an apply allows use of `:=` without pain
   out_vec <- double(length(range))

@@ -4,7 +4,8 @@
 \alias{marginal_effect}
 \title{Get pseudo marginal effects from any model.}
 \usage{
-marginal_effect(data, var, model, predict_model = predict, range = -1)
+marginal_effect(data, var, model, predict_model = predict, range = -1,
+  sample_frac = 1)
 }
 \arguments{
 \item{data}{data.table object on which to score}
@@ -18,6 +19,8 @@ marginal_effect(data, var, model, predict_model = predict, range = -1)
 
 \item{range}{of values to test. Defaults to 10 evenly spaced
 points between the min and max of the target variable.}
+
+\item{sample_frac}{fraction of data to sample randomly}
 }
 \value{
 data.table of the variable and its derived marginal effect

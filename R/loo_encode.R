@@ -26,5 +26,6 @@ loo_encode <- function(id, resp) {
 
 loo_grouped_vector <- function(resp) {
   total <- sum(resp)
-  sapply(resp, function(x) (total - x)/(length(resp) - 1))
+  divisor <- length(resp) - 1
+  sapply(resp, function(x) (total - x)/divisor)
 }

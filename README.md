@@ -2,6 +2,13 @@
 
 Potentially useful stuff for the next Allstate Hackathon
 
+## Installation
+
+```R
+# install.packages("devtools")
+devtools::install_github("DexGroves/hacktoolkit")
+```
+
 ## What's in here
 
 Weighted variance, weighted binomial deviance. `weighted_variance`, `binomial_deviance`

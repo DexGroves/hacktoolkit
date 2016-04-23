@@ -49,3 +49,13 @@ auc <- function(actual, predicted, weight = rep(1, length(actual))) {
 
   sum(auc_dt$yaxis * auc_dt$remaining_xaxis) / total_area
 }
+
+#' Accuracy.
+#'
+#' Number of correct classes / total guesses.
+#' @export
+#' @param y Numeric vector of actual classes
+#' @param x Numeric vector of predicted classes
+accuracy <- function(y, u) {
+  sum(y == u) / length(y)
+}

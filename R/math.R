@@ -49,18 +49,3 @@ auc <- function(actual, predicted, weight = rep(1, length(actual))) {
 
   sum(auc_dt$yaxis * auc_dt$remaining_xaxis) / total_area
 }
-
-#' Multivariate AUC.
-#'
-#' @export
-#' @param y numeric vector of y
-#' @param U matrix of predictions, rows being classes
-#' @param n_classes optional number of classes. Infers from dim(U).
-#' @return AUC statistic
-multivariate_auc <- function(y, U, n_classes = nrow(U)) {
-  y_binary <- matrix(0, nrow = length(y), ncol = n_classes)
-  fold_index <- cbind(seq(y), y)
-  y_binary[fold_index] <- 1
-
-  auc(as.numeric(y_binary), as.numeric(t(U)))
-}

@@ -4,14 +4,12 @@
 \alias{multivariate_auc}
 \title{Multivariate AUC.}
 \usage{
-multivariate_auc(y, U, n_classes = nrow(U))
+multivariate_auc(y, U)
 }
 \arguments{
-\item{y}{numeric vector of y}
+\item{y}{Numeric vector of actual classes}
 
-\item{U}{matrix of predictions, rows being classes}
-
-\item{n_classes}{optional number of classes. Infers from dim(U).}
+\item{U}{Numeric matrix of response-scale predictions, classes as columns}
 }
 \value{
 AUC statistic

@@ -22,7 +22,7 @@ mv_binomial_deviance <- function(y, U, cap = c(0, 1)) {
 #' @param U Numeric matrix of response-scale predictions, classes as columns
 #' @return AUC statistic
 multivariate_auc <- function(y, U) {
-  n_classes = nrow(U)
+  n_classes <- ncol(U)
 
   y_binary <- matrix(0, nrow = length(y), ncol = n_classes)
   fold_index <- cbind(seq_along(y), y)

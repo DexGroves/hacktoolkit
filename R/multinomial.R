@@ -28,5 +28,5 @@ multivariate_auc <- function(y, U) {
   fold_index <- cbind(seq_along(y), y)
   y_binary[fold_index] <- 1
 
-  auc(as.numeric(y_binary), as.numeric(t(U)))
+  auc(as.numeric(y_binary), as.numeric(U))
 }

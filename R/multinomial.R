@@ -11,7 +11,7 @@ mv_binomial_deviance <- function(y, U, cap = c(0, 1)) {
   U[U > cap[1]] <- cap[1]
 
   deviances <- sapply(
-    1:ncol(U), function(n) binomial_deviance(as.numeric(y == n), U[n, ]))
+    1:ncol(U), function(n) binomial_deviance(as.numeric(y == n), U[, n]))
   sum(deviances)
 }
 

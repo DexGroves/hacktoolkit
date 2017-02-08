@@ -1,12 +1,11 @@
 #' Parse the h2o cv grid into something less ridiculous. 
 #' @import stringr
 #' @import dplyr 
-#' @import tibble
 #' @export
 #' @param grid H2OGrid of H2ORegressionModel objects
 #' @return tibble of cv performance ordered by lambda
 h2o_cvdf <- function(grid) { 
-  as_tibble(grid@summary_table) %>% 
+  grid@summary_table %>% 
     mutate(lambda = as.numeric(str_extract(lambda, "[0-9|\\.]+")),
            model_ids = as.numeric(str_extract(model_ids, "[0-9]+$")),
            residual_deviance = as.numeric(residual_deviance)) %>% 
